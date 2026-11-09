@@ -1,8 +1,10 @@
 <h1 align="center">Zed Setup</h1>
 <p align="center">
-  A small, opinionated pack of tweaks that makes <a href="https://zed.dev">Zed</a> feel a bit more like home.<br>
-  A dark theme · a run-anything shortcut · a one-key Git panel.
+  Small keyboard-driven tweaks that make <a href="https://zed.dev">Zed</a> feel a bit more like home.<br>
+  Run any file with one shortcut · toggle the Git panel with one key.
 </p>
+
+> 🎨 Looking for the theme? It lives in its own repo: **[Crooli Dark](https://github.com/xandertaylorx/crooli-dark-theme)**.
 
 ---
 
@@ -10,11 +12,10 @@
 
 | | Tweak | What you get | Key |
 | --- | --- | --- | --- |
-| 🎨 | **Crooli Dark** | Near-black theme with VS Code Dark+ code colours | - |
 | ▶️ | **Run file** | Run the open file in any language, straight from the keyboard | `⌘ ⌃ R` |
 | 🌿 | **Git panel toggle** | One key to open *and* close the Git panel | `⌘ G` |
 
-Everything is independent. Take one, take all.
+They're independent. Take one, take both.
 
 ```bash
 git clone https://github.com/xandertaylorx/zed-setup.git
@@ -22,43 +23,6 @@ cd zed-setup
 ```
 
 > Zed has no toolbar run button yet, so Run file is a shortcut plus the gutter ▶ that Zed shows on entry points.
-
----
-
-## 🎨 Crooli Dark
-
-A near-black UI with neutral greys and a soft blue accent. Code uses the same syntax palette as VS Code's Dark+, so it looks familiar if you're coming from VS Code.
-
-| Role | Colour |
-| --- | --- |
-| Background | `#0a0a0a` |
-| Panels / surfaces | `#111111` – `#1c1c1c` |
-| Text | `#ededed` |
-| Accent | `#52a8ff` |
-| Error / success | `#ff6b5e` / `#3fcf75` |
-
-Syntax: keywords **blue**, strings **orange-brown**, comments **green**, functions **yellow**, types **teal**, variables **light blue**.
-
-**Install**
-
-```bash
-mkdir -p ~/.config/zed/themes
-cp themes/crooli.json ~/.config/zed/themes/
-```
-
-Then run **theme selector: toggle** from the command palette (`⌘ ⇧ P`) and pick **Crooli Dark**, or set it in `settings.json`:
-
-```json
-"theme": "Crooli Dark"
-```
-
-Optional fonts (macOS), see [`settings.snippet.json`](settings.snippet.json):
-
-```json
-"ui_font_family": ".SystemUIFont",
-"buffer_font_family": "SF Mono",
-"buffer_font_fallbacks": ["Menlo"]
-```
 
 ---
 
@@ -106,14 +70,23 @@ Zed's default key only *focuses* the Git panel, so you often press twice to clos
 
 ---
 
+## Optional: fonts
+
+macOS system fonts, see [`settings.snippet.json`](settings.snippet.json):
+
+```json
+"ui_font_family": ".SystemUIFont",
+"buffer_font_family": "SF Mono",
+"buffer_font_fallbacks": ["Menlo"]
+```
+
 ## Files
 
 ```text
-├── themes/crooli.json        the theme
 ├── run/run-file.sh           the run-any-file script
 ├── run/tasks.snippet.json    task for tasks.json
 ├── keymap.snippet.json       key bindings (run + git panel)
-└── settings.snippet.json     theme + font settings
+└── settings.snippet.json     font settings
 ```
 
 Zed config lives in `~/.config/zed/`. Snippets are meant to be merged into your own files, not replace them. Tested on Zed 1.27 on macOS.

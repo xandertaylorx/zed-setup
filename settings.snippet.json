@@ -1,5 +1,4 @@
 {
-  "theme": "Crooli Dark",
   "ui_font_family": ".SystemUIFont",
   "buffer_font_family": "SF Mono",
   "buffer_font_fallbacks": ["Menlo"]
