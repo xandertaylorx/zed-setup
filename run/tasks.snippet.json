@@ -1,0 +1,11 @@
+[
+  {
+    "label": "Run file",
+    "command": "sh \"$HOME/.config/zed/run-file.sh\" \"$ZED_FILE\"",
+    "use_new_terminal": false,
+    "reveal": "always",
+    "show_summary": false,
+    "show_command": false,
+    "tags": ["python-module-main-method", "go-main", "rust-main", "bash-script"]
+  }
+]

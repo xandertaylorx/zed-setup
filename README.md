@@ -1,8 +1,28 @@
-# Crooli Dark for Zed
+<h1 align="center">Zed Setup</h1>
+<p align="center">
+  A small, opinionated pack of tweaks that makes <a href="https://zed.dev">Zed</a> feel a bit more like home.<br>
+  A dark theme · a run-anything shortcut · a one-key Git panel.
+</p>
 
-A near-black dark theme for [Zed](https://zed.dev), with a neutral grey UI and a soft blue accent. Code is coloured with the same syntax palette as VS Code's Dark+ theme, so it should feel familiar if you're coming from VS Code.
+---
 
-## Colours
+## What's inside
+
+| | Tweak | What you get | Key |
+| --- | --- | --- | --- |
+| 🎨 | **Crooli Dark** | Near-black theme with VS Code Dark+ code colours | - |
+| ▶️ | **Run file** | Run the open file in any language, straight from the keyboard | `⌘ ⌃ R` |
+| 🌿 | **Git panel toggle** | One key to open *and* close the Git panel | `⌘ G` |
+
+Everything is independent. Take one, take all.
+
+> Zed has no toolbar run button yet, so Run file is a shortcut plus the gutter ▶ that Zed shows on entry points.
+
+---
+
+## 🎨 Crooli Dark
+
+A near-black UI with neutral greys and a soft blue accent. Code uses the same syntax palette as VS Code's Dark+, so it looks familiar if you're coming from VS Code.
 
 | Role | Colour |
 | --- | --- |
@@ -12,32 +32,22 @@ A near-black dark theme for [Zed](https://zed.dev), with a neutral grey UI and a
 | Accent | `#52a8ff` |
 | Error / success | `#ff6b5e` / `#3fcf75` |
 
-Syntax colours follow Dark+: keywords blue, strings orange-brown, comments green, functions yellow, types teal, variables light blue.
+Syntax: keywords **blue**, strings **orange-brown**, comments **green**, functions **yellow**, types **teal**, variables **light blue**.
 
-## Install
-
-Zed loads any theme file placed in `~/.config/zed/themes/`.
+**Install**
 
 ```bash
-git clone https://github.com/xandertaylorx/zed-crooli-theme.git
 mkdir -p ~/.config/zed/themes
-cp zed-crooli-theme/themes/crooli.json ~/.config/zed/themes/
+cp themes/crooli.json ~/.config/zed/themes/
 ```
 
-Then pick the theme in Zed:
-
-- Open the command palette (`cmd-shift-p`), run **theme selector: toggle**, and choose **Crooli Dark**.
-- Or add this to your `settings.json` (`cmd-,`):
+Then run **theme selector: toggle** from the command palette (`⌘ ⇧ P`) and pick **Crooli Dark**, or set it in `settings.json`:
 
 ```json
 "theme": "Crooli Dark"
 ```
 
-If it doesn't show up straight away, restart Zed.
-
-## Optional: fonts
-
-The theme doesn't set fonts. For a clean look similar to the original, add to `settings.json`:
+Optional fonts (macOS), see [`settings.snippet.json`](settings.snippet.json):
 
 ```json
 "ui_font_family": ".SystemUIFont",
@@ -45,17 +55,63 @@ The theme doesn't set fonts. For a clean look similar to the original, add to `s
 "buffer_font_fallbacks": ["Menlo"]
 ```
 
-See [`settings.snippet.json`](settings.snippet.json). These are macOS fonts, so use your own on other systems.
+---
 
-## Optional: `cmd-g` toggles the Git panel
+## ▶️ Run file
 
-Add the binding from [`keymap.snippet.json`](keymap.snippet.json) to your `keymap.json` (command palette → **zed: open keymap file**). Pressing `cmd-g` then opens the Git panel if it's closed and closes it if it's open.
+Press **`⌘ ⌃ R`** and the file you have open runs in Zed's terminal panel. The script picks the right command from the file extension.
 
-Note that `cmd-g` is also "find next" while a search bar is open, and that takes priority in that case.
+| Language | Runs with |
+| --- | --- |
+| Python | `python3` |
+| JavaScript / TypeScript | `node` / `npx tsx` |
+| Java | compiles all `.java` files into `bin/`, runs the class named after your file |
+| Rust | `cargo run` (or `rustc` without a `Cargo.toml`) |
+| Go | `go run` |
+| C / C++ | `clang` / `clang++` |
+| Swift, Ruby, PHP, Lua | their own interpreters |
+| Shell | `zsh` |
+| Kotlin | `kotlinc` |
+| HTML | opens in your browser |
 
-## Customising
+Anything else prints a friendly message. Add a language with one line in the `case` block of [`run/run-file.sh`](run/run-file.sh). You need the relevant toolchain installed.
 
-Edit `~/.config/zed/themes/crooli.json`. Zed reloads theme files as you save. Colours are plain hex values, and syntax colours live under `"syntax"`.
+**Install**
+
+```bash
+cp run/run-file.sh ~/.config/zed/run-file.sh
+```
+
+1. Add the task from [`run/tasks.snippet.json`](run/tasks.snippet.json) to `~/.config/zed/tasks.json`.
+2. Add the binding from [`keymap.snippet.json`](keymap.snippet.json) to `~/.config/zed/keymap.json`.
+
+**Bonus: the gutter ▶.** The task is tagged so Zed also shows a clickable ▶ beside Python `if __name__ == "__main__":`, Go `main()`, Rust `main()` and shell scripts. Re-run the last task with Zed's built-in `⌘ ⌥ R`.
+
+---
+
+## 🌿 Git panel toggle
+
+Zed's default key only *focuses* the Git panel, so you often press twice to close it. This binding opens it when closed and closes it when open, wherever your cursor is.
+
+```json
+{ "context": "Workspace", "bindings": { "cmd-g": "git_panel::Toggle" } }
+```
+
+`⌘ G` is also "find next" while a search bar is open, and that takes priority then.
+
+---
+
+## Files
+
+```text
+├── themes/crooli.json        the theme
+├── run/run-file.sh           the run-any-file script
+├── run/tasks.snippet.json    task for tasks.json
+├── keymap.snippet.json       key bindings (run + git panel)
+└── settings.snippet.json     theme + font settings
+```
+
+Zed config lives in `~/.config/zed/`. Snippets are meant to be merged into your own files, not replace them. Tested on Zed 1.27 on macOS.
 
 ## License
 

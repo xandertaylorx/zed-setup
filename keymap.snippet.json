@@ -2,7 +2,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-g": "git_panel::Toggle"
+      "cmd-g": "git_panel::Toggle",
+      "cmd-ctrl-r": ["task::Spawn", { "task_name": "Run file" }]
     }
   }
 ]
