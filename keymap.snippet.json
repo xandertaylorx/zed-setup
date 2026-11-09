@@ -1,0 +1,8 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-g": "git_panel::Toggle"
+    }
+  }
+]
