@@ -16,6 +16,11 @@
 
 Everything is independent. Take one, take all.
 
+```bash
+git clone https://github.com/xandertaylorx/zed-setup.git
+cd zed-setup
+```
+
 > Zed has no toolbar run button yet, so Run file is a shortcut plus the gutter ▶ that Zed shows on entry points.
 
 ---
