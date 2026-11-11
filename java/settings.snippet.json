@@ -1,0 +1,19 @@
+{
+  "languages": {
+    "Java": { "formatter": "language_server" }
+  },
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java": {
+          "format": {
+            "settings": {
+              "url": "__ZED_DIR__/java-formatter.xml",
+              "profile": "Zed"
+            }
+          }
+        }
+      }
+    }
+  }
+}
