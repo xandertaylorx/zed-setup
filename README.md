@@ -28,7 +28,7 @@ cd zed-setup
 
 ## ▶️ Run file
 
-Press **`⌘ ⌃ R`** and the file you have open runs in Zed's terminal panel. The script picks the right command from the file extension.
+Press **`⌘ ⌃ R`** and the file you have open is saved (if it has unsaved changes) and then runs in Zed's terminal panel. The script picks the right command from the file extension.
 
 | Language | Runs with |
 | --- | --- |

@@ -3,6 +3,7 @@
     "label": "Run file",
     "command": "sh \"$HOME/.config/zed/run-file.sh\" \"$ZED_FILE\"",
     "use_new_terminal": false,
+    "save": "current",
     "reveal": "always",
     "show_summary": false,
     "show_command": false,
